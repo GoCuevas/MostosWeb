@@ -1,0 +1,68 @@
+/* --- RESPONSIVE DESIGN --- */
+
+/* Tabletas y Móviles (Menos de 768px) */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Una sola columna */
+        padding: 1rem;
+    }
+
+    .hero {
+        height: 30vh;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .filters {
+        display: flex;
+        overflow-x: auto; /* Permite scroll horizontal en las categorías */
+        padding-bottom: 10px;
+        gap: 10px;
+        position: sticky;
+        top: 60px;
+        background: var(--crema);
+        z-index: 50;
+    }
+
+    .filters button {
+        white-space: nowrap; /* Evita que el texto de los botones se rompa */
+        flex-shrink: 0;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .product-card h3 {
+        font-size: 1rem;
+    }
+
+    /* Ajuste del Carrito para móvil */
+    .cart-content {
+        width: 100%; /* El carrito ocupa toda la pantalla */
+    }
+}
+
+/* Móviles Pequeños (Menos de 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 15px;
+    }
+    
+    .product-card {
+        padding: 10px;
+    }
+    
+    .controls {
+        flex-direction: column; /* Input arriba, botón abajo */
+        align-items: stretch;
+    }
+    
+    input[type="number"] {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

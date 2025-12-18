@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooltiva | Estética y Salud Natural</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">COOLTIVA</div>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienestar desde el Bosque Nativo</h1>
+            <p>Productos naturales para alergias, estética e insumos industriales.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <aside class="filters">
+            <h3>Categorías</h3>
+            <button onclick="filterProducts('todos')">Todos</button>
+            <button onclick="filterProducts('estetica')">Estética</button>
+            <button onclick="filterProducts('salud')">Salud y Piel</button>
+            <button onclick="filterProducts('insumos')">Insumos</button>
+        </aside>
+
+        <section class="catalog" id="product-grid">
+            </section>
+    </main>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <h2>Tu Carrito</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">Total: $<span id="total-price">0</span></div>
+            <button class="btn-close" onclick="toggleCart()">Cerrar</button>
+            <button class="btn-checkout">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
