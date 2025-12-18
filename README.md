@@ -3,10 +3,10 @@
 ![MOSTOS Hero](img/buff.png)
 
 **MOSTOS** es una plataforma de e-commerce minimalista diseñada para una marca de fragancias de autor inspiradas en los relieves del búfalo americano, la niebla y la fuerza de la naturaleza. Este proyecto enfoca su experiencia de usuario en una estética oscura, sobria y funcional.
-
+ 
 ---
 
-## ✨ Características Principales
+## ✨ Características Principales - https://mostos-web.vercel.app (Demo PC y Movil)
 
 * **Diseño Premium & Oscuro:** Interfaz basada en una paleta de grises carbón, verdes musgo y blancos rotos.
 * **Experiencia Mobile-First:** Totalmente responsivo, optimizado para compras desde dispositivos móviles.
