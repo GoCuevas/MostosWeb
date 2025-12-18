@@ -1,51 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooltiva | Estética y Salud Natural</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>MOSTOS · Fragancias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* =========================
+       PALETA & BASE (TU CÓDIGO ORIGINAL)
+       ========================= */
+    :root {
+      --verde-oscuro: #1f2a25;
+      --verde-musgo: #2f3e36;
+      --gris-carbon: #121212;
+      --gris-humo: #9fa6a3;
+      --blanco-roto: #f2f3f2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      background-color: var(--gris-carbon);
+      color: var(--blanco-roto);
+      line-height: 1.5;
+    }
+
+    header.hero {
+      min-height: 80vh;
+      background: linear-gradient(rgba(18,18,18,.55), rgba(18,18,18,.85)),
+                  url("img/buff.png") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero-content h1 { font-size: 3rem; letter-spacing: 4px; margin-bottom: 14px; }
+    .hero-content p { max-width: 520px; margin: 0 auto; font-size: 1.05rem; color: var(--gris-humo); }
+
+    /* =========================
+       NAV & DROPDOWNS (ACTUALIZADO)
+       ========================= */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(18,18,18,.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 14px;
+      z-index: 100;
+    }
+
+    .nav-item { position: relative; } /* Para posicionar el desplegable */
+
+    nav a {
+      text-decoration: none;
+      color: var(--blanco-roto);
+      font-size: .95rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    nav a:hover { color: var(--gris-humo); }
+
+    /* Estilo de la lista desplegable */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1a1a1a;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+      z-index: 1;
+      list-style: none;
+      padding: 10px 0;
+      border: 1px solid #333;
+    }
+
+    .dropdown-content li a {
+      color: white; /* Letra blanca como pediste */
+      padding: 8px 16px;
+      display: block;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .dropdown-content li a:hover { background-color: #2a2a2a; }
+    .nav-item:hover .dropdown-content { display: block; }
+
+    /* =========================
+       SECCIONES & GRID (TU CÓDIGO ORIGINAL)
+       ========================= */
+    section { padding: 70px 20px; max-width: 1100px; margin: auto; }
+    section h2 { text-align: center; margin-bottom: 40px; letter-spacing: 2px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #1a1a1a, #111);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .3s ease;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    /* =========================
+       SUMADOR DE UNIDADES
+       ========================= */
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .qty-controls button {
+      background: transparent;
+      border: 1px solid var(--gris-humo);
+      color: white;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .qty-controls input {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 30px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .price { font-weight: 600; margin-bottom: 16px; text-align: center; }
+
+    .card button.add-btn {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: var(--verde-musgo);
+      color: var(--blanco-roto);
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       CARRITO LATERAL (SIDEBAR)
+       ========================= */
+    #cart-sidebar {
+      position: fixed;
+      right: -350px;
+      top: 0;
+      width: 320px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid #333;
+      padding: 30px;
+      z-index: 1000;
+      transition: right 0.3s ease;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+    #cart-sidebar.active { right: 0; }
+    .cart-item { margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+    /* --- ESTILOS RESTANTES --- */
+    .atmosfera {
+      background: linear-gradient(rgba(18,18,18,.75), rgba(18,18,18,.95)),
+                  url("img/niebla.png") center/cover no-repeat;
+      border-radius: 24px; text-align: center;
+    }
+    footer { background: #0d0d0d; text-align: center; padding: 40px 20px; color: var(--gris-humo); }
+    
+    @media (min-width: 768px) { .hero-content h1 { font-size: 4rem; } }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">COOLTIVA</div>
-            <div class="cart-icon" onclick="toggleCart()">
-                🛒 <span id="cart-count">0</span>
-            </div>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Bienestar desde el Bosque Nativo</h1>
-            <p>Productos naturales para alergias, estética e insumos industriales.</p>
-        </div>
-    </section>
-
-    <main class="container">
-        <aside class="filters">
-            <h3>Categorías</h3>
-            <button onclick="filterProducts('todos')">Todos</button>
-            <button onclick="filterProducts('estetica')">Estética</button>
-            <button onclick="filterProducts('salud')">Salud y Piel</button>
-            <button onclick="filterProducts('insumos')">Insumos</button>
-        </aside>
-
-        <section class="catalog" id="product-grid">
-            </section>
-    </main>
-
-    <div id="cart-modal" class="cart-modal">
-        <div class="cart-content">
-            <h2>Tu Carrito</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">Total: $<span id="total-price">0</span></div>
-            <button class="btn-close" onclick="toggleCart()">Cerrar</button>
-            <button class="btn-checkout">Finalizar Compra</button>
-        </div>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>MOSTOS</h1>
+      <p>Fragancias de carácter · Inspiradas en la fuerza, el humo y la tierra</p>
     </div>
+  </header>
 
-    <script src="script.js"></script>
+  <nav>
+    <div class="nav-item">
+      <a href="#">Fragancias</a>
+      <ul class="dropdown-content">
+        <li><a href="#">Amaderadas</a></li>
+        <li><a href="#">Ahumadas</a></li>
+        <li><a href="#">Tierra</a></li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <a href="#">Colección</a>
+      <ul class="dropdown-content">
+        <li><a href="#">Invierno 2025</a></li>
+        <li><a href="#">Línea Ancestral</a></li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <a href="#">Marca</a>
+      <ul class="dropdown-content">
+        <li><a href="#">Historia</a></li>
+        <li><a href="#">Proceso</a></li>
+      </ul>
+    </div>
+    <a href="#" onclick="toggleCart()" style="margin-left: 20px;">🛒 (<span id="cart-count">0</span>)</a>
+  </nav>
+
+  <section>
+    <h2>COLECCIÓN</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Thathánka</h3>
+        <p>Fuerza, cuero y humo frío.</p>
+        <div class="price">$39.990</div>
+        <div class="qty-controls">
+          <button onclick="changeQty('qty1', -1)">-</button>
+          <input type="text" id="qty1" value="1" readonly>
+          <button onclick="changeQty('qty1', 1)">+</button>
+        </div>
+        <button class="add-btn" onclick="addToCart('Thathánka', 39990, 'qty1')">Agregar</button>
+      </div>
+
+      <div class="card">
+        <h3>Ayani</h3>
+        <p>Notas minerales, madera húmeda y niebla.</p>
+        <div class="price">$36.990</div>
+        <div class="qty-controls">
+          <button onclick="changeQty('qty2', -1)">-</button>
+          <input type="text" id="qty2" value="1" readonly>
+          <button onclick="changeQty('qty2', 1)">+</button>
+        </div>
+        <button class="add-btn" onclick="addToCart('Ayani', 36990, 'qty2')">Agregar</button>
+      </div>
+
+      <div class="card">
+        <h3>Mostos No.1</h3>
+        <p>Minimalismo aromático · Tierra y resinas.</p>
+        <div class="price">$42.990</div>
+        <div class="qty-controls">
+          <button onclick="changeQty('qty3', -1)">-</button>
+          <input type="text" id="qty3" value="1" readonly>
+          <button onclick="changeQty('qty3', 1)">+</button>
+        </div>
+        <button class="add-btn" onclick="addToCart('Mostos No.1', 42990, 'qty3')">Agregar</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="cart-sidebar">
+    <h3>CARRITO</h3>
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #333;">
+    <div id="cart-items"></div>
+    <p style="margin-top: 20px;">Total: <span id="cart-total">$0</span></p>
+    <button onclick="toggleCart()" style="margin-top:20px; width:100%; padding:10px; background:var(--verde-musgo); color:white; border:none; cursor:pointer;">Cerrar</button>
+  </div>
+
+  <section class="atmosfera">
+    <h2>ATMÓSFERA</h2>
+    <p>MOSTOS no es una fragancia. Es presencia, silencio y carácter.</p>
+  </section>
+
+  <footer>© 2025 MOSTOS · Fragancias · Chile</footer>
+
+  <script>
+    let cart = [];
+
+    function changeQty(id, delta) {
+      const input = document.getElementById(id);
+      let val = parseInt(input.value) + delta;
+      if (val < 1) val = 1;
+      input.value = val;
+    }
+
+    function addToCart(name, price, qtyId) {
+      const qty = parseInt(document.getElementById(qtyId).value);
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ name, price, qty });
+      }
+      updateCart();
+      document.getElementById('cart-sidebar').classList.add('active');
+    }
+
+    function updateCart() {
+      const itemsDiv = document.getElementById('cart-items');
+      const countSpan = document.getElementById('cart-count');
+      const totalSpan = document.getElementById('cart-total');
+      
+      itemsDiv.innerHTML = '';
+      let total = 0;
+      let count = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        itemsDiv.innerHTML += `<div class="cart-item">${item.name} x ${item.qty} - $${(item.price * item.qty).toLocaleString()}</div>`;
+      });
+
+      countSpan.innerText = count;
+      totalSpan.innerText = `$${total.toLocaleString()}`;
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-sidebar').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
